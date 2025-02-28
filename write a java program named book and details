@@ -1,0 +1,22 @@
+class book{
+    public String title;
+    public String author;
+    public int year_of_publication;
+
+    public book(String title, String author, int year_of_publication){
+        this.title = title;
+        this.author = author;
+        this.year_of_publication = year_of_publication;
+    }
+
+    public void printbookDetails(String title, String author, int year_of_publication){
+        System.out.println("Title of book: " + title);
+        System.out.println("Author for this book: " + author);
+        System.out.println("Year of publication: " + year_of_publication);
+    }
+
+    public static void main(String[] args){
+        book book = new book("Harry Potter", "J.K.Rowling", 2001);
+        book.printbookDetails(book.title, book.author, book.year_of_publication);
+    }
+}

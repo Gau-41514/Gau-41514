@@ -1,0 +1,16 @@
+import java.util.*;
+class Simpleinterest{
+public static void main(String[] args)
+{
+ System.out.println(" taking input");
+Scanner sc = new Scanner(System.in);
+System.out.println("enter INTa number:");
+float p = sc.nextFloat();
+System.out.println("enter a number:");
+float t = sc.nextFloat();
+System.out.println("enter a num:");
+float r = sc.nextFloat();
+float s = (p*t*r)/100;
+System.out.println("simple intrest is"+s);
+}
+}

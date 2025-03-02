@@ -1,0 +1,46 @@
+class Main {
+    String car_color;
+    String car_brand;
+    String fuel_type;
+    int mileage;
+
+    // Constructor
+    public Main(String car_color, String car_brand, String fuel_type, int mileage) {
+        this.car_color = car_color;
+        this.car_brand = car_brand;
+        this.fuel_type = fuel_type;
+        this.mileage = mileage; // Fixed the spelling mistake here
+    }
+
+    // Getter methods
+    public String color() {
+        return car_color;
+    }
+
+    public String brand() {
+        return car_brand;
+    }
+
+    public String fuel() {
+        return fuel_type;
+    }
+
+    public int mile() {
+        return mileage;
+    }
+
+    // Main method
+    public static void main(String[] args) {
+        Main car1 = new Main("red", "Hyundai", "diesel", 19);
+        System.out.println("Car 1 - Color: " + car1.color() + ", Brand: " + car1.brand() + 
+                           ", Fuel Type: " + car1.fuel() + ", Mileage: " + car1.mile());
+
+        Main car2 = new Main("blue", "Toyota", "petrol", 17);
+        System.out.println("Car 2 - Color: " + car2.color() + ", Brand: " + car2.brand() + 
+                           ", Fuel Type: " + car2.fuel() + ", Mileage: " + car2.mile());
+
+        Main car3 = new Main("black", "Tata", "diesel", 19);
+        System.out.println("Car 3 - Color: " + car3.color() + ", Brand: " + car3.brand() + 
+                           ", Fuel Type: " + car3.fuel() + ", Mileage: " + car3.mile());
+    }
+}

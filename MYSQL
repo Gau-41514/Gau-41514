@@ -1,0 +1,198 @@
+
+JOIN in SQL is used to combine rows from two or more tables based on a related column between them.
+
+Types of JOINs
+
+1. INNER JOIN → Returns matching rows only
+
+2. LEFT JOIN (LEFT OUTER JOIN) → All rows from left + matched from right
+
+3. RIGHT JOIN (RIGHT OUTER JOIN) → All rows from right + matched from left
+
+4. FULL OUTER JOIN → All rows from both tables
+
+5. CROSS JOIN → Returns Cartesian product (all combinations)
+
+6. SELF JOIN → Table joined with itself
+
+
+
+
+
+sample Database:
+Table 1: Students
+StudentID	StudentName	CourseID
+1		Rahul		101
+2		Priya		102
+3		Amit		101
+4		Neha		103
+5		Arjun		NULL
+
+
+Table 2: Courses
+CourseID	CourseName	Faculty
+101		DBMS		Prof. A
+102		Java		Prof. B
+103		Python		Prof. C
+104		C++		Prof. D
+
+
+INNER JOIN: Definition: Returns rows that have matching values in both tables.
+
+SELECT s.StudentID, s.StudentName, c.CourseName, c.Faculty
+FROM Students s
+INNER JOIN Courses c
+ON s.CourseID = c.CourseID;
+
+
+
+Result
+StudentID	StudentName	CourseName	Faculty
+1		Rahul		DBMS		Prof. A
+2		Priya		Java		Prof. B
+3		Amit		DBMS		Prof. A
+4		Neha		Python		Prof. C
+
+
+
+LEFT JOIN: 
+Definition: Returns all records from the left table + matched rows from the right table.
+
+
+SELECT s.StudentID, s.StudentName, c.CourseName, c.Faculty
+FROM Students s
+LEFT JOIN Courses c
+ON s.CourseID = c.CourseID;
+
+
+
+Result
+StudentID	StudentName	CourseName	Faculty
+1		Rahul		DBMS		Prof. A
+2		Priya		Java		Prof. B
+3		Amit		DBMS		Prof. A
+4		Neha		Python		Prof. C
+5		Arjun		NULL		NULL
+
+
+
+
+RIGHT JOIN: 
+Definition: Returns all records from the right table + matched rows from the left table.
+
+SELECT s.StudentID, s.StudentName, c.CourseName, c.Faculty
+FROM Students s
+RIGHT JOIN Courses c
+ON s.CourseID = c.CourseID;
+
+
+
+Result
+StudentID	StudentName	CourseName	Faculty
+1		Rahul		DBMS		Prof. A
+2		Priya		Java		Prof. B
+3		Amit		DBMS		Prof. A
+4		Neha		Python		Prof. C
+NULL		NULL		C++		Prof. D
+
+
+
+
+
+FULL OUTER JOIN
+Definition: Returns all records from both tables, with NULLs where there’s no match.
+
+
+SELECT s.StudentID, s.StudentName, c.CourseName, c.Faculty
+FROM Students s
+LEFT JOIN Courses c
+ON s.CourseID = c.CourseID
+UNION
+SELECT s.StudentID, s.StudentName, c.CourseName, c.Faculty
+FROM Students s
+RIGHT JOIN Courses c
+ON s.CourseID = c.CourseID;
+
+
+
+Result
+StudentID	StudentName	CourseName	Faculty
+1		Rahul		DBMS		Prof. A
+2		Priya		Java		Prof. B
+3		Amit		DBMS		Prof. A
+4		Neha		Python		Prof. C
+5		Arjun		NULL		NULL
+NULL		NULL		C++		Prof. D
+
+
+
+
+CROSS JOIN
+
+Definition: Returns the Cartesian product → every row from Students × every row from Courses.
+
+Query
+SELECT s.StudentName, c.CourseName
+FROM Students s
+CROSS JOIN Courses c;
+
+
+
+
+SELF JOIN
+
+Definition: Join a table with itself (commonly used for hierarchical data).
+
+Example: Students recommending other students
+
+Table: Friends(StudentID, FriendID)
+
+Query
+SELECT s.StudentName AS Student, f.StudentName AS Friend
+FROM Students s
+INNER JOIN Students f
+ON s.StudentID = f.CourseID;
+-------------------------------------------------------------------------------------------------------------------------ANSWER-----------------------------------------------------------------------------------------------------------------------------------------------
+create database lab5
+use lab5
+CREATE TABLE students (studentid INT,studentname VARCHAR(20),coursesid INT);
+insert into students values(1,"Rahul",101);
+insert into students values(2,"Priya",102);
+insert into students values(3,"Amit",101);
+insert into students values(4,"Neha",103);
+insert into students values(5,"Arjun",Null);
+CREATE TABLE courses (coursesid INT,coursename VARCHAR(20),faculty varchar(20));
+insert into courses values(101,"DBMS","Prof.a");
+insert into courses values(102,"Java","Prof.B");
+insert into courses values(103,"Python","Prof.c");
+insert into courses values(104,"C++","Prof.D");
+SELECT s.studentid, s.studentname, c.coursename, c.faculty
+FROM students s
+INNER JOIN courses c
+ON s.coursesid = c.coursesid;
+SELECT s.studentID, s.studentName, c.courseName, c.faculty
+FROM students s
+LEFT JOIN courses c
+ON s.coursesID = c.coursesID;
+SELECT s.StudentID, s.StudentName, c.CourseName, c.Faculty
+FROM Students s
+RIGHT JOIN Courses c
+ON s.CoursesID = c.CoursesID;
+SELECT s.StudentID, s.StudentName, c.CourseName, c.Faculty
+FROM Students s
+LEFT JOIN Courses c
+ON s.CoursesID = c.CoursesID
+UNION
+SELECT s.StudentID, s.StudentName, c.CourseName, c.Faculty
+FROM Students s
+RIGHT JOIN Courses c
+ON s.CoursesID = c.CoursesID;
+SELECT s.StudentName, c.CourseName
+FROM Students s
+CROSS JOIN Courses c;
+SELECT s.StudentName AS Student, f.StudentName AS Friend
+FROM Students s
+INNER JOIN Students f
+ON s.StudentID = f.CoursesID;
+drop table students;
+drop table courses;
